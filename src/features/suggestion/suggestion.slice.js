@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchSuggestion = createAsyncThunk('suggestion/fetchSuggestion', async () => {
     const response = await fetch('http://localhost:3004/api/suggestion');
-    const data = await response.json();
-    return data;
+    const { data } = await response.json(); // Extract data here
+    return data; // Return the data object directly
 });
 
 const initialState = {
@@ -37,6 +37,6 @@ const suggestionSlice = createSlice(options);
 
 export default suggestionSlice.reducer;
 
-export const selectSuggestion = (state) => state.suggestion.suggestion; // Task 17
+export const selectSuggestion = (state) => state.suggestion.suggestion;
 export const selectLoading = (state) => state.suggestion.loading;
 export const selectError = (state) => state.suggestion.error;
